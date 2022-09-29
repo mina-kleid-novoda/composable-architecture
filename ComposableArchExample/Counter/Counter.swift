@@ -6,7 +6,11 @@ Tasks:
  */
 
 struct CounterViewState: Equatable {
-    var counter: Int = 0
+    var counter: Int = 0 {
+        didSet {
+            isEvenNumber = counter % 2 == 0
+        }
+    }
     var isEvenNumber: Bool = false
     var isTimerOn: Bool = false
     var timer: Int = 0
@@ -34,11 +38,9 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
     switch action {
     case .incrementTapped:
         state.counter += 1
-        state.isEvenNumber = state.counter % 2 == 0
         return handleTimer(state)
     case .decrementTapped:
         state.counter -= 1
-        state.isEvenNumber = state.counter % 2 > 0
         return handleTimer(state)
     case .timerStarted:
         state.isTimerOn = true
