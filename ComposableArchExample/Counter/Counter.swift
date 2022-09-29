@@ -45,14 +45,16 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
         state.timer += 1
         return .none
     case .resetTimer:
-        return stopTimer()
+        state.isTimerOn = false
+        state.timer = 0
+        return .cancel(id: TimerID.self)
     }
 
     func handleTimer(_ state: inout Counter.State) -> Effect<Counter.Action, Never> {
         if (state.isEvenNumber) {
             return startTimer()
         } else {
-            return Effect(value: .resetTimer)
+            return .init(value: .resetTimer)
         }
     }
 
@@ -65,11 +67,5 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
             }
             await send(.resetTimer)
         }.cancellable(id: TimerID.self)
-    }
-
-    func stopTimer() -> Effect<Counter.Action, Never> {
-        state.isTimerOn = false
-        state.timer = 0
-        return .cancel(id: TimerID.self)
     }
 }
