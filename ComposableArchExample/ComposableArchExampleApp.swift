@@ -9,7 +9,7 @@ struct ComposableArchExampleApp: App {
                 NavigationLink("Navigation"){
                     CounterView(
                         store: Store(
-                            initialState: CounterViewState(),
+                            initialState: Counter.State(),
                             reducer: reducer.debug(),
                             environment: .init(queue: DispatchQueue.main)
                         )

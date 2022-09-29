@@ -1,36 +1,38 @@
 import Foundation
 import ComposableArchitecture
 
-struct CounterViewState: Equatable {
-    var counter: Int = 0 {
-        didSet {
-            isEvenNumber = counter % 2 == 0
+enum Counter {
+    struct State: Equatable {
+        var counter: Int = 0 {
+            didSet {
+                isEvenNumber = counter % 2 == 0
+            }
         }
+        var isEvenNumber: Bool = false
+        var isTimerOn: Bool = false
+        var timer: Int = 0
     }
-    var isEvenNumber: Bool = false
-    var isTimerOn: Bool = false
-    var timer: Int = 0
+
+    enum Action: Equatable {
+        case incrementTapped
+        case decrementTapped
+
+        case timerStarted
+        case incrementTimer
+        case resetTimer
+
+        case onDisappear
+    }
+
+    struct Environment {
+        let queue: DispatchQueue
+    }
 }
 
-enum CounterViewAction: Equatable {
-    case incrementTapped
-    case decrementTapped
-
-    case timerStarted
-    case incrementTimer
-    case resetTimer
-
-    case onDisappear
-}
-
-struct CounterViewEnvironment {
-    let queue: DispatchQueue
-}
-
-fileprivate enum TimerID {}
-
-let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironment> { state, action, environment in
+let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { state, action, environment in
+    enum TimerID {}
     let MAX_COUNTER = 5
+
     switch action {
     case .incrementTapped:
         state.counter += 1
@@ -52,7 +54,7 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
         return stopTimer()
     }
 
-    func handleTimer(_ state: inout CounterViewState) -> Effect<CounterViewAction, Never> {
+    func handleTimer(_ state: inout Counter.State) -> Effect<Counter.Action, Never> {
         if (state.isEvenNumber) {
             return startTimer()
         } else {
@@ -60,7 +62,7 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
         }
     }
 
-    func startTimer() -> Effect<CounterViewAction, Never> {
+    func startTimer() -> Effect<Counter.Action, Never> {
         return .run { send in
             await send(.timerStarted)
             for _ in 0...MAX_COUNTER {
@@ -71,7 +73,7 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
         }.cancellable(id: TimerID.self)
     }
 
-    func stopTimer() -> Effect<CounterViewAction, Never> {
+    func stopTimer() -> Effect<Counter.Action, Never> {
         return .cancel(id: TimerID.self)
     }
 }

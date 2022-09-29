@@ -2,7 +2,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CounterView: View {
-    let store: Store<CounterViewState, CounterViewAction>
+    let store: Store<Counter.State, Counter.Action>
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -26,12 +26,11 @@ struct CounterView: View {
     }
 }
 
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         CounterView(
             store: Store(
-                initialState: CounterViewState(),
+                initialState: Counter.State(),
                 reducer: reducer,
                 environment: .init(queue: DispatchQueue.main)
             )
