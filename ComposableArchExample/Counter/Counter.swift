@@ -1,9 +1,5 @@
 import Foundation
 import ComposableArchitecture
-/**
-Tasks:
-- Fix Bug: Counter stops when number is odd, but timer is in inconsistent state
- */
 
 struct CounterViewState: Equatable {
     var counter: Int = 0 {
@@ -22,7 +18,7 @@ enum CounterViewAction: Equatable {
 
     case timerStarted
     case incrementTimer
-    case timerFinished
+    case resetTimer
 
     case onDisappear
 }
@@ -34,24 +30,21 @@ struct CounterViewEnvironment {
 fileprivate enum TimerID {}
 
 let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironment> { state, action, environment in
-
+    let MAX_COUNTER = 5
     switch action {
     case .incrementTapped:
         state.counter += 1
-        return handleTimer(state)
+        return handleTimer(&state)
     case .decrementTapped:
         state.counter -= 1
-        return handleTimer(state)
+        return handleTimer(&state)
     case .timerStarted:
         state.isTimerOn = true
         return .none
     case .incrementTimer:
-        guard state.isTimerOn, state.timer < 5 else {
-            return stopTimer()
-        }
         state.timer += 1
         return .none
-    case .timerFinished:
+    case .resetTimer:
         state.isTimerOn = false
         state.timer = 0
         return stopTimer()
@@ -59,20 +52,22 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
         return stopTimer()
     }
 
-    func handleTimer(_ state: CounterViewState) -> Effect<CounterViewAction, Never> {
+    func handleTimer(_ state: inout CounterViewState) -> Effect<CounterViewAction, Never> {
         if (state.isEvenNumber) {
             return startTimer()
         } else {
-            return stopTimer()
+            return Effect(value: .resetTimer)
         }
     }
 
     func startTimer() -> Effect<CounterViewAction, Never> {
         return .run { send in
             await send(.timerStarted)
-            for await _ in environment.queue.timer(interval: 1) {
+            for _ in 0...MAX_COUNTER {
+                try await environment.queue.sleep(for: 1)
                 await send(.incrementTimer)
             }
+            await send(.resetTimer)
         }.cancellable(id: TimerID.self)
     }
 
