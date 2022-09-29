@@ -45,7 +45,7 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
         return .none
     case .incrementTimer:
         guard state.isTimerOn, state.timer < 5 else {
-            return Effect(value: .timerFinished)
+            return stopTimer()
         }
         state.timer += 1
         return .none
