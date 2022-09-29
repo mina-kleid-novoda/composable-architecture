@@ -31,8 +31,8 @@ struct ContentView_Previews: PreviewProvider {
         CounterView(
             store: Store(
                 initialState: Counter.State(),
-                reducer: reducer,
-                environment: .init(queue: DispatchQueue.main)
+                reducer: counterReducer,
+                environment: .init(queue: DispatchQueue.main.eraseToAnyScheduler())
             )
         )
     }

@@ -1,19 +1,26 @@
 import Foundation
 import ComposableArchitecture
 
-enum Counter {
-    struct State: Equatable {
-        var counter: Int = 0 {
+public enum Counter {
+    public struct State: Equatable {
+        public var counter: Int = 0 {
             didSet {
                 isEvenNumber = counter % 2 == 0
             }
         }
-        var isEvenNumber: Bool = false
-        var isTimerOn: Bool = false
-        var timer: Int = 0
+        public var isEvenNumber: Bool = false
+        public var isTimerOn: Bool = false
+        public var timer: Int = 0
+
+        public init(counter: Int = 0, isEvenNumber: Bool = false, isTimerOn: Bool = false, timer: Int = 0) {
+            self.counter = counter
+            self.isEvenNumber = isEvenNumber
+            self.isTimerOn = isTimerOn
+            self.timer = timer
+        }
     }
 
-    enum Action: Equatable {
+    public enum Action: Equatable {
         case incrementTapped
         case decrementTapped
 
@@ -22,12 +29,16 @@ enum Counter {
         case resetTimer
     }
 
-    struct Environment {
-        let queue: DispatchQueue
+    public struct Environment {
+        let queue: AnySchedulerOf<DispatchQueue>
+
+        public init(queue: AnySchedulerOf<DispatchQueue> = .main) {
+            self.queue = queue
+        }
     }
 }
 
-let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { state, action, environment in
+public let counterReducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { state, action, environment in
     enum TimerID {}
     let MAX_COUNTER = 100
 
@@ -54,7 +65,7 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
         if (state.isEvenNumber) {
             return startTimer()
         } else {
-            return .init(value: .resetTimer)
+            return state.isTimerOn ? Effect(value: .resetTimer) : .none
         }
     }
 

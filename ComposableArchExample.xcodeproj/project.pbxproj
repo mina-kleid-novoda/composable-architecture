@@ -13,7 +13,18 @@
 		39E4890D28E1A1C000008003 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E4890C28E1A1C000008003 /* Preview Assets.xcassets */; };
 		39E4891528E1A23D00008003 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 39E4891428E1A23D00008003 /* ComposableArchitecture */; };
 		B84716F328E5C939005299D8 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84716F228E5C939005299D8 /* Counter.swift */; };
+		B84716FB28E5D361005299D8 /* ComposableArchExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84716FA28E5D361005299D8 /* ComposableArchExampleTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B84716FC28E5D361005299D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39E488F928E1A1C000008003 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39E4890028E1A1C000008003;
+			remoteInfo = ComposableArchExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		39E4890128E1A1C000008003 /* ComposableArchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposableArchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,6 +34,8 @@
 		39E4890A28E1A1C000008003 /* ComposableArchExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ComposableArchExample.entitlements; sourceTree = "<group>"; };
 		39E4890C28E1A1C000008003 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B84716F228E5C939005299D8 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		B84716F828E5D361005299D8 /* ComposableArchExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposableArchExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B84716FA28E5D361005299D8 /* ComposableArchExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchExampleTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +47,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B84716F528E5D361005299D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -41,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				39E4890328E1A1C000008003 /* ComposableArchExample */,
+				B84716F928E5D361005299D8 /* ComposableArchExampleTests */,
 				39E4890228E1A1C000008003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				39E4890128E1A1C000008003 /* ComposableArchExample.app */,
+				B84716F828E5D361005299D8 /* ComposableArchExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +104,14 @@
 			path = Counter;
 			sourceTree = "<group>";
 		};
+		B84716F928E5D361005299D8 /* ComposableArchExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				B84716FA28E5D361005299D8 /* ComposableArchExampleTests.swift */,
+			);
+			path = ComposableArchExampleTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,6 +135,24 @@
 			productReference = 39E4890128E1A1C000008003 /* ComposableArchExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B84716F728E5D361005299D8 /* ComposableArchExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B84716FE28E5D361005299D8 /* Build configuration list for PBXNativeTarget "ComposableArchExampleTests" */;
+			buildPhases = (
+				B84716F428E5D361005299D8 /* Sources */,
+				B84716F528E5D361005299D8 /* Frameworks */,
+				B84716F628E5D361005299D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B84716FD28E5D361005299D8 /* PBXTargetDependency */,
+			);
+			name = ComposableArchExampleTests;
+			productName = ComposableArchExampleTests;
+			productReference = B84716F828E5D361005299D8 /* ComposableArchExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -117,6 +165,10 @@
 				TargetAttributes = {
 					39E4890028E1A1C000008003 = {
 						CreatedOnToolsVersion = 14.0;
+					};
+					B84716F728E5D361005299D8 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 39E4890028E1A1C000008003;
 					};
 				};
 			};
@@ -137,6 +189,7 @@
 			projectRoot = "";
 			targets = (
 				39E4890028E1A1C000008003 /* ComposableArchExample */,
+				B84716F728E5D361005299D8 /* ComposableArchExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -148,6 +201,13 @@
 			files = (
 				39E4890D28E1A1C000008003 /* Preview Assets.xcassets in Resources */,
 				39E4890928E1A1C000008003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B84716F628E5D361005299D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +224,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B84716F428E5D361005299D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B84716FB28E5D361005299D8 /* ComposableArchExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B84716FD28E5D361005299D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 39E4890028E1A1C000008003 /* ComposableArchExample */;
+			targetProxy = B84716FC28E5D361005299D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		39E4890E28E1A1C000008003 /* Debug */ = {
@@ -360,6 +436,43 @@
 			};
 			name = Release;
 		};
+		B84716FF28E5D361005299D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.novoda.ComposableArchExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComposableArchExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ComposableArchExample";
+			};
+			name = Debug;
+		};
+		B847170028E5D361005299D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.novoda.ComposableArchExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComposableArchExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ComposableArchExample";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -377,6 +490,15 @@
 			buildConfigurations = (
 				39E4891128E1A1C000008003 /* Debug */,
 				39E4891228E1A1C000008003 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B84716FE28E5D361005299D8 /* Build configuration list for PBXNativeTarget "ComposableArchExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B84716FF28E5D361005299D8 /* Debug */,
+				B847170028E5D361005299D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

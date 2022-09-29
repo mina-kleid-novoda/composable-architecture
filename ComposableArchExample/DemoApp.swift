@@ -10,7 +10,7 @@ struct DemoApp: App {
                     CounterView(
                         store: Store(
                             initialState: Counter.State(),
-                            reducer: reducer.debug(),
+                            reducer: counterReducer.debug(),
                             environment: .init(queue: .main)
                         )
                     )
