@@ -35,11 +35,11 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
     case .incrementTapped:
         state.counter += 1
         state.isEvenNumber = state.counter % 2 == 0
-        return handleTimer(state.isEvenNumber, environment)
+        return handleTimer(state)
     case .decrementTapped:
         state.counter -= 1
         state.isEvenNumber = state.counter % 2 > 0
-        return handleTimer(state.isEvenNumber, environment)
+        return handleTimer(state)
     case .timerStarted:
         state.isTimerOn = true
         return .none
@@ -52,25 +52,29 @@ let reducer = Reducer<CounterViewState, CounterViewAction, CounterViewEnvironmen
     case .timerFinished:
         state.isTimerOn = false
         state.timer = 0
-        return .cancel(id: TimerID.self)
+        return stopTimer()
     case .onDisappear:
-        return .cancel(id: TimerID.self)
+        return stopTimer()
     }
-}
 
-let startTimer: (CounterViewEnvironment) -> Effect<CounterViewAction, Never> = { environment in
-    return .run { send in
-        await send(.timerStarted)
-        for await _ in environment.queue.timer(interval: 1) {
-            await send(.incrementTimer)
+    func handleTimer(_ state: CounterViewState) -> Effect<CounterViewAction, Never> {
+        if (state.isEvenNumber) {
+            return startTimer()
+        } else {
+            return stopTimer()
         }
-    }.cancellable(id: TimerID.self)
-}
+    }
 
-let handleTimer: (Bool, CounterViewEnvironment) -> Effect<CounterViewAction, Never>  = { isEvenNumber, environment in
-    if (isEvenNumber) {
-        return startTimer(environment)
-    } else {
+    func startTimer() -> Effect<CounterViewAction, Never> {
+        return .run { send in
+            await send(.timerStarted)
+            for await _ in environment.queue.timer(interval: 1) {
+                await send(.incrementTimer)
+            }
+        }.cancellable(id: TimerID.self)
+    }
+
+    func stopTimer() -> Effect<CounterViewAction, Never> {
         return .cancel(id: TimerID.self)
     }
 }
