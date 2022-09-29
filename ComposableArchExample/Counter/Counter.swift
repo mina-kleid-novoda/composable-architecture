@@ -29,7 +29,7 @@ enum Counter {
 
 let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { state, action, environment in
     enum TimerID {}
-    let MAX_COUNTER = 5
+    let MAX_COUNTER = 100
 
     switch action {
     case .incrementTapped:
@@ -60,7 +60,7 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
         return .run { send in
             await send(.timerStarted)
             for _ in 0...MAX_COUNTER {
-                try await environment.queue.sleep(for: 1)
+                try await environment.queue.sleep(for: 0.05)
                 await send(.incrementTimer)
             }
             await send(.resetTimer)
