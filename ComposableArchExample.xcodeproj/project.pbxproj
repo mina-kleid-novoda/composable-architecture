@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39E4890528E1A1C000008003 /* ComposableArchExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E4890428E1A1C000008003 /* ComposableArchExampleApp.swift */; };
+		39E4890528E1A1C000008003 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E4890428E1A1C000008003 /* DemoApp.swift */; };
 		39E4890728E1A1C000008003 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E4890628E1A1C000008003 /* CounterView.swift */; };
 		39E4890928E1A1C000008003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E4890828E1A1C000008003 /* Assets.xcassets */; };
 		39E4890D28E1A1C000008003 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E4890C28E1A1C000008003 /* Preview Assets.xcassets */; };
@@ -17,7 +17,7 @@
 
 /* Begin PBXFileReference section */
 		39E4890128E1A1C000008003 /* ComposableArchExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposableArchExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		39E4890428E1A1C000008003 /* ComposableArchExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableArchExampleApp.swift; sourceTree = "<group>"; };
+		39E4890428E1A1C000008003 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		39E4890628E1A1C000008003 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		39E4890828E1A1C000008003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39E4890A28E1A1C000008003 /* ComposableArchExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ComposableArchExample.entitlements; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				B84716F128E5C927005299D8 /* Counter */,
-				39E4890428E1A1C000008003 /* ComposableArchExampleApp.swift */,
+				39E4890428E1A1C000008003 /* DemoApp.swift */,
 				39E4890828E1A1C000008003 /* Assets.xcassets */,
 				39E4890A28E1A1C000008003 /* ComposableArchExample.entitlements */,
 				39E4890B28E1A1C000008003 /* Preview Content */,
@@ -159,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39E4890728E1A1C000008003 /* CounterView.swift in Sources */,
-				39E4890528E1A1C000008003 /* ComposableArchExampleApp.swift in Sources */,
+				39E4890528E1A1C000008003 /* DemoApp.swift in Sources */,
 				B84716F328E5C939005299D8 /* Counter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

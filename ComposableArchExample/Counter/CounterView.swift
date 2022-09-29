@@ -21,7 +21,7 @@ struct CounterView: View {
                     }
                 }
             }
-            .onDisappear{ viewStore.send(.onDisappear) }
+            .onDisappear{ viewStore.send(.resetTimer) }
         }
     }
 }

@@ -20,8 +20,6 @@ enum Counter {
         case timerStarted
         case incrementTimer
         case resetTimer
-
-        case onDisappear
     }
 
     struct Environment {
@@ -47,10 +45,6 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
         state.timer += 1
         return .none
     case .resetTimer:
-        state.isTimerOn = false
-        state.timer = 0
-        return stopTimer()
-    case .onDisappear:
         return stopTimer()
     }
 
@@ -74,6 +68,8 @@ let reducer = Reducer<Counter.State, Counter.Action, Counter.Environment> { stat
     }
 
     func stopTimer() -> Effect<Counter.Action, Never> {
+        state.isTimerOn = false
+        state.timer = 0
         return .cancel(id: TimerID.self)
     }
 }
