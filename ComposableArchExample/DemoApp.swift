@@ -2,7 +2,7 @@ import SwiftUI
 import ComposableArchitecture
 
 @main
-struct ComposableArchExampleApp: App {
+struct DemoApp: DemoApp {
     var body: some Scene {
         WindowGroup {
             NavigationView {
@@ -11,7 +11,7 @@ struct ComposableArchExampleApp: App {
                         store: Store(
                             initialState: Counter.State(),
                             reducer: reducer.debug(),
-                            environment: .init(queue: DispatchQueue.main)
+                            environment: .init(queue: .main)
                         )
                     )
                     
